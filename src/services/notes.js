@@ -3,6 +3,7 @@ const  mock = require("../repositories/mockNotes")
 function getAllNotes(req, res){
     res.json(mock.notes)
 }
+
 function getNote(req, res){
     res.json(mock.getNote(req.params.id))
 }
@@ -13,9 +14,10 @@ function removeNote(req, res){
 }
 
 function addNote(req, res){
-    mock.addNote(req.body)
-    res.status(201).end()
+    const newNote = mock.addNote(req.body)
+    res.status(201).json(newNote)
 }
+
 function editNote(req, res){
     res.json(mock.editNote(req.params.id, req.body))
 }
