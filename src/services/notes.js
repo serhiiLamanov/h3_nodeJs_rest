@@ -1,4 +1,5 @@
 const  mock = require("../repositories/mockNotes")
+const {CATEGORIES_QUANTITY} = require("../repositories/notesMetadata")
 
 function getAllNotes(req, res){
     res.json(mock.notes)
@@ -24,10 +25,10 @@ function editNote(req, res){
 
 
 function getNotesStats(req, res){
-    const A = new Array(4)
+    const A = new Array(CATEGORIES_QUANTITY)
     for(let i=0; i<A.length; i++){
         A[i] = {active:0, archived:0}
-    }console.log(A)
+    }
 
     res.json(mock.notes.reduce((acc, curr) => ++acc[curr.category][curr.archived ? "archived" : "active"] && acc, A))
 }
