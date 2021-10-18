@@ -29,6 +29,6 @@ router.route('/notes/:id')
   .get((req, res) => res.json(getNote(req.params.id)))
   .delete((req, res) => {removeNote(req.params.id); res.end()})
   .patch(validationMiddleCreator(validateNoteFields),
-         (req, res) => res.json(editNote(req.params.id, req.body)))
+    (req, res) => res.json(editNote(req.params.id, req.body)))
 
 module.exports = router
