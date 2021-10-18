@@ -1,13 +1,12 @@
 const { noteSchema, noteFieldsSchema } = require("../repositories/notesMetadata");
 
-const validationCreator = schema => (req, res, next) =>{
+const validationCreator = schema => (obj) =>{
     try{
-        schema.validateSync(req.body)
+        schema.validateSync(obj)
     }catch(error){ 
         error.status = 422
         throw error
     }
-    next()
 }
 const validateNote = validationCreator(noteSchema)
 const validateNoteFields = validationCreator(noteFieldsSchema)
